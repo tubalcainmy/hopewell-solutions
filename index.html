@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Safety Assessment - Is Your Home Ready for Solar?</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1328786468999034');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1328786468999034&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --solar-gold: #F59E0B;
+            --solar-dark: #1E293B;
+            --solar-green: #10B981;
+            --solar-red: #EF4444;
+            --solar-yellow: #FBBF24;
+            --bg-light: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-mid: #475569;
+            --border: #E2E8F0;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '☀️';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 180px;
+            opacity: 0.05;
+        }
+
+        .header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--solar-dark);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            color: var(--text-mid);
+            margin-bottom: 25px;
+        }
+
+        .header .warning {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid var(--solar-gold);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .header .warning strong {
+            color: #92400E;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Question */
+        .question {
+            margin-bottom: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--solar-dark);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .question-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--solar-gold) 0%, #F97316 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        /* Radio/Checkbox Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: var(--solar-gold);
+            background: #FFFBEB;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"],
+        .option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--solar-gold);
+        }
+
+        .option.selected {
+            border-color: var(--solar-gold);
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--solar-gold);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--solar-gold) 0%, #F97316 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Thank You Pages */
+        .thank-you-page {
+            display: none;
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .thank-you-page.show {
+            display: block;
+        }
+
+        .ty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .ty-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .ty-green .ty-title {
+            color: var(--solar-green);
+        }
+
+        .ty-yellow .ty-title {
+            color: var(--solar-gold);
+        }
+
+        .ty-not-lead .ty-title {
+            color: var(--text-mid);
+        }
+
+        .ty-content {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .ty-list {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .ty-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .ty-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--solar-green);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .ty-yellow .ty-list li::before {
+            content: '⚠️';
+        }
+
+        .ty-cta {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, var(--solar-green) 0%, #059669 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .ty-yellow .ty-cta {
+            background: linear-gradient(135deg, var(--solar-gold) 0%, #F97316 100%);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .ty-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--solar-gold) 0%, #F97316 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header,
+            .form-container,
+            .thank-you-page {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .question-label {
+                font-size: 18px;
+            }
+
+            .ty-title {
+                font-size: 24px;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--solar-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Warning Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--solar-gold);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-yes {
+            background: linear-gradient(135deg, var(--solar-gold) 0%, #F97316 100%);
+            color: white;
+        }
+
+        .modal-btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .modal-btn-no {
+            background: #E2E8F0;
+            color: var(--text-dark);
+        }
+
+        .modal-btn-no:hover {
+            background: #CBD5E1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>Solar is Safe — Installing It on the Wrong Home Is Not</h1>
+        <p class="subtitle">Many solar problems (fires, system failure, wasted money) don't come from the panels — they come from the home itself.</p>
+        <div class="warning">
+            <strong>Before you invest millions in solar,</strong> find out if your home meets the basic safety requirements. This 60-second assessment could save you millions.
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container" id="formContainer">
+        <form id="solarForm">
+
+            <!-- Question 1: Building Type -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">1</span>
+                    What type of building do you live in?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="buildingType" value="Bungalow" required>
+                        <span>Bungalow</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingType" value="Duplex">
+                        <span>Duplex</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingType" value="Block of flats">
+                        <span>Block of flats</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingType" value="Storey building">
+                        <span>Storey building</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingType" value="Other">
+                        <span>Other</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 2: Ownership -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">2</span>
+                    Is the house:
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="ownership" value="Owned by you" required>
+                        <span>Owned by you</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="ownership" value="Rented (have landlord's permission)">
+                        <span>Rented (have landlord's permission)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="ownership" value="Family house">
+                        <span>Family house</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 3: Building Age -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">3</span>
+                    How old is the building (approx.)?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="buildingAge" value="Less than 5 years" required>
+                        <span>Less than 5 years</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingAge" value="5–10 years">
+                        <span>5–10 years</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingAge" value="10–20 years">
+                        <span>10–20 years</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingAge" value="Over 20 years">
+                        <span>Over 20 years</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="buildingAge" value="Not sure">
+                        <span>Not sure</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 4: Electrical Issues -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">4</span>
+                    Has your house ever had electrical issues?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="checkbox" name="electricalIssues" value="Frequent tripping">
+                        <span>Frequent tripping</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="electricalIssues" value="Burnt sockets / switches">
+                        <span>Burnt sockets / switches</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="electricalIssues" value="Flickering lights">
+                        <span>Flickering lights</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="electricalIssues" value="Past electrical fire">
+                        <span>Past electrical fire</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="electricalIssues" value="None of the above">
+                        <span>None of the above</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 5: Roof Type -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">5</span>
+                    What type of roof do you have?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="roofType" value="Aluminium" required>
+                        <span>Aluminium</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofType" value="Longspan">
+                        <span>Longspan</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofType" value="Stone-coated">
+                        <span>Stone-coated</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofType" value="Asbestos">
+                        <span>Asbestos</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofType" value="Not sure">
+                        <span>Not sure</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 6: Roof Condition -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">6</span>
+                    Is your roof currently:
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="roofCondition" value="Solid and leak-free" required>
+                        <span>Solid and leak-free</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofCondition" value="Has minor leaks">
+                        <span>Has minor leaks</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofCondition" value="Old / weak">
+                        <span>Old / weak</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="roofCondition" value="Not sure">
+                        <span>Not sure</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 7: Shading -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">7</span>
+                    Are there trees or tall buildings shading your roof?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="shading" value="Yes" required>
+                        <span>Yes</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="shading" value="No">
+                        <span>No</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="shading" value="Not sure">
+                        <span>Not sure</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 8: Current Power Source -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">8</span>
+                    What do you currently use for power?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="powerSource" value="PHCN only" required>
+                        <span>PHCN only</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="powerSource" value="Generator only">
+                        <span>Generator only</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="powerSource" value="PHCN + Generator">
+                        <span>PHCN + Generator</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 9A: NEPA Bill -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">9</span>
+                    How much do you spend monthly on NEPA (electricity bills)?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="nepaBill" value="Under ₦10,000" required>
+                        <span>Under ₦10,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="nepaBill" value="₦10,000 – ₦20,000">
+                        <span>₦10,000 – ₦20,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="nepaBill" value="₦20,000 – ₦40,000">
+                        <span>₦20,000 – ₦40,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="nepaBill" value="₦40,000+">
+                        <span>₦40,000+</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="nepaBill" value="Not sure">
+                        <span>Not sure</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 9B: Generator Fuel Spend (conditional) -->
+            <div class="question" id="fuelQuestion" style="display: none;">
+                <label class="question-label">
+                    <span class="question-number">9b</span>
+                    How much do you spend monthly on generator fuel?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="fuelSpend" value="I don't use generator">
+                        <span>I don't use generator</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="fuelSpend" value="Under ₦10,000">
+                        <span>Under ₦10,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="fuelSpend" value="₦10,000 – ₦30,000">
+                        <span>₦10,000 – ₦30,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="fuelSpend" value="₦30,000 – ₦60,000">
+                        <span>₦30,000 – ₦60,000</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="fuelSpend" value="₦60,000+">
+                        <span>₦60,000+</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 10: System Size -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">10</span>
+                    Which system sizes are you planning to install?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="systemSize" value="3.5 kVA - 5 kVA" required>
+                        <span>3.5 kVA - 5 kVA (Small homes)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="systemSize" value="5 kVA - 7.5 kVA">
+                        <span>5 kVA - 7.5 kVA (Medium homes)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="systemSize" value="7.5 kVA - 10 kVA">
+                        <span>7.5 kVA - 10 kVA (Large homes)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="systemSize" value="10 kVA+">
+                        <span>10 kVA+ (Mansions/Commercial)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 11: Timeline -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">11</span>
+                    When are you realistically planning to install solar?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="timeline" value="Immediately (0–14 days)" required>
+                        <span>Immediately (0–14 days)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="timeline" value="Soon (2–4 weeks)">
+                        <span>Soon (2–4 weeks)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="timeline" value="In the future (1–3 months)">
+                        <span>In the future (1–3 months)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="timeline" value="Just gathering information">
+                        <span>Just gathering information</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 12: Has Installer Recommendation -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">12</span>
+                    Has an installer already performed a load calculation or given you a capacity recommendation?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="hasRecommendation" value="Yes, I already have a specific kVA recommendation but am open to get a personalized based on my safety results" required>
+                        <span>Yes, I already have a specific kVA recommendation but am open to get a personalized based on my safety results</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="hasRecommendation" value="I have a price, but I'm not sure about the technical capacity">
+                        <span>I have a price, but I'm not sure about the technical capacity</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="hasRecommendation" value="No, I haven't spoken to anyone yet">
+                        <span>No, I haven't spoken to anyone yet</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 13: Open to Recommendation -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">13</span>
+                    If your home and energy needs check out, would you be open to receiving a personalized solar recommendation and quotation tailored to your actual energy needs and home safety score?
+                </label>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="openToQuotation" value="Yes" required>
+                        <span>Yes</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="openToQuotation" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">📱</span>
+                    WhatsApp Number
+                </label>
+                <input type="tel" class="text-input" name="whatsapp" required placeholder="08012345678">
+            </div>
+
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">👤</span>
+                    First Name
+                </label>
+                <input type="text" class="text-input" name="firstName" required placeholder="Enter your first name">
+            </div>
+
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">📍</span>
+                    Location
+                </label>
+                <input type="text" class="text-input" name="location" required placeholder="Enter your location">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Get My Safety Assessment Results
+            </button>
+
+        </form>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" id="loadingState">
+        <div class="spinner"></div>
+        <p style="color: white; font-size: 18px;">Analyzing your home safety...</p>
+    </div>
+
+    <!-- Thank You Page: GREEN -->
+    <div class="thank-you-page ty-green" id="thankYouGreen">
+        <div class="ty-icon">✅</div>
+        <h2 class="ty-title">Great News! Your Home Appears SAFE for Solar</h2>
+        
+        <div class="ty-content">
+            <p style="font-size: 18px; color: var(--text-mid); margin-bottom: 20px;">
+                Based on your responses:
+            </p>
+            
+            <ul class="ty-list" style="list-style: none;">
+                <li>Property Status: You own home - good for installation</li>
+                <li>Energy Spend: High enough to justify solar investment</li>
+                <li>Timeline: Ready within 90 days</li>
+                <li>No major electrical or roof issues detected</li>
+            </ul>
+
+            <div style="background: #FEF3C7; padding: 25px; border-radius: 12px; border-left: 4px solid var(--solar-gold); margin: 30px 0;">
+                <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 15px; color: #92400E;">
+                    NEXT CRITICAL STEP:
+                </h3>
+                <p style="color: #78350F; line-height: 1.8;">
+                    Before you spend ₦1M-₦3M on solar, you need an accurate <strong>ENERGY ASSESSMENT</strong> to determine the exact system size for your home.
+                </p>
+                <p style="color: #78350F; margin-top: 15px; line-height: 1.8;">
+                    Installing the wrong size can damage your investment, waste money on oversized systems, or burn out batteries with undersized systems.
+                </p>
+            </div>
+
+            <p style="font-size: 16px; color: var(--text-mid); margin-bottom: 15px;">
+                <strong>Connect with our certified solar engineer who will:</strong>
+            </p>
+            <ul class="ty-list" style="list-style: none;">
+                <li>Calculate your exact energy needs (100% FREE)</li>
+                <li>Recommend the right kVA size for your home</li>
+                <li>Send you a detailed professional quotation</li>
+            </ul>
+
+            <p style="font-size: 14px; color: var(--text-mid); margin-top: 20px;">
+                This takes 2 minutes and could save you millions
+            </p>
+        </div>
+
+        <a href="#" class="ty-cta" id="greenCTA" target="_blank">
+            Start FREE Energy Assessment →
+        </a>
+    </div>
+
+    <!-- Thank You Page: YELLOW -->
+    <div class="thank-you-page ty-yellow" id="thankYouYellow">
+        <div class="ty-icon">⚠️</div>
+        <h2 class="ty-title">Your Home May Be Suitable - Professional Assessment Needed</h2>
+        
+        <div class="ty-content">
+            <p style="font-size: 18px; color: var(--text-mid); margin-bottom: 20px;">
+                Based on your responses, we detected 1-2 areas that need attention:
+            </p>
+            
+            <ul class="ty-list" style="list-style: none;">
+                <li>Roof condition may need repair or reinforcement</li>
+                <li>Electrical wiring requires professional inspection</li>
+                <li>Energy spend is moderate - ROI timeline needs calculation</li>
+            </ul>
+
+            <div style="background: #D1FAE5; padding: 25px; border-radius: 12px; border-left: 4px solid var(--solar-green); margin: 30px 0;">
+                <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 15px; color: #065F46;">
+                    THE GOOD NEWS:
+                </h3>
+                <p style="color: #047857; line-height: 1.8;">
+                    These issues are <strong>FIXABLE</strong>. Many homeowners successfully install solar after addressing these areas first.
+                </p>
+            </div>
+
+            <p style="font-size: 16px; color: var(--text-mid); margin-bottom: 15px; line-height: 1.8;">
+                Installing solar WITHOUT fixing these issues can lead to equipment damage, safety risks, and wasted investment.
+            </p>
+
+            <p style="font-size: 16px; color: var(--text-dark); margin-bottom: 15px; font-weight: 600;">
+                NEXT STEP:
+            </p>
+            <p style="font-size: 16px; color: var(--text-mid); margin-bottom: 15px;">
+                Speak with our certified solar engineer who will:
+            </p>
+            <ul class="ty-list" style="list-style: none;">
+                <li>Assess the specific risks in your home (FREE)</li>
+                <li>Recommend fixes BEFORE installation</li>
+                <li>Design a system that accounts for your home's unique conditions</li>
+            </ul>
+
+            <p style="font-size: 14px; color: var(--text-mid); margin-top: 20px;">
+                This ensures your solar investment is both SAFE and PROFITABLE.
+            </p>
+        </div>
+
+        <a href="#" class="ty-cta" id="yellowCTA" target="_blank">
+            Get FREE Professional Assessment →
+        </a>
+    </div>
+
+    <!-- Thank You Page: NOT A LEAD -->
+    <div class="thank-you-page ty-not-lead" id="thankYouNotLead">
+        <div class="ty-icon">ℹ️</div>
+        <h2 class="ty-title">Thank You for Completing the Solar Safety Assessment</h2>
+        
+        <div class="ty-content">
+            <p style="font-size: 18px; color: var(--text-mid); margin-bottom: 20px;">
+                Based on your current situation, a full-scale solar installation may not be the most cost-effective option right now.
+            </p>
+            
+            <p style="font-size: 16px; color: var(--text-dark); margin-bottom: 15px; font-weight: 600;">
+                Here's why:
+            </p>
+            <ul class="ty-list" style="list-style: none; background: #FEE2E2; border-left-color: var(--solar-red);">
+                <li style="color: #7F1D1D;">Property Status: Solar requires ownership for long-term ROI</li>
+                <li style="color: #7F1D1D;">Energy Spend: Under ₦30,000/month - payback period may be too long</li>
+                <li style="color: #7F1D1D;">Timeline: Still gathering information - no immediate installation plan</li>
+            </ul>
+
+            <div style="background: var(--bg-light); padding: 25px; border-radius: 12px; margin: 30px 0;">
+                <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 15px; color: var(--text-dark);">
+                    OUR RECOMMENDATION:
+                </h3>
+                <p style="color: var(--text-mid); line-height: 1.8;">
+                    While you plan for full solar installation, consider these alternatives:
+                </p>
+                <ul style="margin-top: 15px; color: var(--text-mid); line-height: 1.8;">
+                    <li style="margin-bottom: 10px;">• Small backup inverter systems (1-2 kVA) for essential appliances</li>
+                    <li style="margin-bottom: 10px;">• Energy-efficient appliances to reduce fuel costs</li>
+                    <li style="margin-bottom: 10px;">• Generator optimization while you save for solar</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 16px; color: var(--text-mid); margin-bottom: 15px;">
+                We respect your journey. When you're ready for full solar installation, we'll be here to help.
+            </p>
+
+            <p style="font-size: 16px; color: var(--text-mid);">
+                In the meantime, download our <strong>FREE Solar Planning Guide</strong> to prepare for your future solar investment.
+            </p>
+        </div>
+
+        <a href="https://tubalcain.systeme.io/solar-guide-thank-you" class="ty-cta" style="background: linear-gradient(135deg, var(--text-mid) 0%, var(--text-dark) 100%);">
+            Download FREE Planning Guide →
+        </a>
+    </div>
+
+</div>
+
+<script>
+// Get installer initial from URL
+function getInstallerFromURL() {
+    const path = window.location.pathname;
+    const match = path.match(/\/([^/]+)-solar-assessment/);
+    return match ? match[1] : 'default';
+}
+
+const installerInitial = getInstallerFromURL();
+
+// Progress bar
+const totalQuestions = 16; // 13 questions + 3 contact fields
+let answeredQuestions = 0;
+
+function updateProgress() {
+    const progress = (answeredQuestions / totalQuestions) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+}
+
+// Track answered questions
+document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+    input.addEventListener('change', function() {
+        const name = this.name;
+        const questionAnswered = document.querySelector(`input[name="${name}"]:checked`);
+        if (questionAnswered && !this.dataset.counted) {
+            answeredQuestions++;
+            this.dataset.counted = 'true';
+            updateProgress();
+        }
+    });
+});
+
+document.querySelectorAll('.text-input').forEach(input => {
+    input.addEventListener('blur', function() {
+        if (this.value && !this.dataset.counted) {
+            answeredQuestions++;
+            this.dataset.counted = 'true';
+            updateProgress();
+        }
+    });
+});
+
+// Visual feedback for options
+document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function() {
+        const input = this.querySelector('input');
+        if (input.type === 'radio') {
+            const name = input.name;
+            document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                radio.closest('.option').classList.remove('selected');
+            });
+        }
+        if (input.checked || input.type === 'radio') {
+            this.classList.add('selected');
+        } else {
+            this.classList.remove('selected');
+        }
+    });
+});
+
+// Show/hide fuel question based on power source
+document.querySelectorAll('input[name="powerSource"]').forEach(input => {
+    input.addEventListener('change', function() {
+        const fuelQuestion = document.getElementById('fuelQuestion');
+        const fuelInputs = document.querySelectorAll('input[name="fuelSpend"]');
+        
+        if (this.value === 'Generator only' || this.value === 'PHCN + Generator') {
+            // Show fuel question and make it required
+            fuelQuestion.style.display = 'block';
+            fuelInputs.forEach(input => input.required = true);
+        } else {
+            // Hide fuel question and make it not required
+            fuelQuestion.style.display = 'none';
+            fuelInputs.forEach(input => {
+                input.required = false;
+                input.checked = false;
+            });
+            // Auto-select "I don't use generator" for PHCN only users
+            document.querySelector('input[name="fuelSpend"][value="I don\'t use generator"]').checked = true;
+        }
+    });
+});
+
+// Form submission
+document.getElementById('solarForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Hide form, show loading
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('loadingState').classList.add('show');
+    
+    // Collect form data
+    const formData = new FormData(this);
+    const data = {
+        installerInitial: installerInitial,
+        submissionURL: window.location.href,
+        submissionTime: new Date().toISOString()
+    };
+    
+    // Convert FormData to object
+    for (let [key, value] of formData.entries()) {
+        if (key === 'electricalIssues') {
+            if (!data[key]) data[key] = [];
+            data[key].push(value);
+        } else {
+            data[key] = value;
+        }
+    }
+    
+    // Calculate combined monthly spend from NEPA + Fuel
+    const nepaBill = data.nepaBill || 'Under ₦10,000';
+    const fuelSpend = data.fuelSpend || 'I don\'t use generator';
+    
+    // Extract numeric values to calculate total
+    function extractAmount(range) {
+        if (range.includes('Under')) return 5000; // Assume ₦5k average for under ranges
+        if (range === 'I don\'t use generator') return 0;
+        if (range === 'Not sure') return 0;
+        
+        // Extract first number from range like "₦10,000 – ₦20,000"
+        const match = range.match(/₦?([\d,]+)/);
+        if (match) {
+            return parseInt(match[1].replace(/,/g, ''));
+        }
+        return 0;
+    }
+    
+    const nepaAmount = extractAmount(nepaBill);
+    const fuelAmount = extractAmount(fuelSpend);
+    const totalSpend = nepaAmount + fuelAmount;
+    
+    // Map total to spending range for webhook
+    if (totalSpend < 10000) {
+        data.monthlySpend = 'Under ₦30,000';
+    } else if (totalSpend < 30000) {
+        data.monthlySpend = '₦30,000 – ₦60,000';
+    } else if (totalSpend < 60000) {
+        data.monthlySpend = '₦60,000 – ₦100,000';
+    } else {
+        data.monthlySpend = 'Over ₦100,000';
+    }
+    
+    // Store individual values too for reference
+    data.nepaBillAmount = nepaBill;
+    data.fuelSpendAmount = fuelSpend;
+    
+    // Determine lead qualification
+    const leadQualification = determineLeadQualification(data);
+    data.leadStatus = leadQualification.status;
+    data.leadColor = leadQualification.color;
+    
+    // Send to webhook
+    try {
+        await fetch('https://hook.eu1.make.com/xeg3bw4nw88aziv6d4w6ii9n5a62yoqp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        // Fire Meta Pixel for qualified leads only (Green or Yellow)
+        if (leadQualification.color === 'green' || leadQualification.color === 'yellow') {
+            fbq('track', 'Lead', {
+                content_name: 'Solar Safety Assessment',
+                lead_status: leadQualification.color,
+                installer: installerInitial
+            });
+        }
+        
+    } catch (error) {
+        console.error('Webhook error:', error);
+    }
+    
+    // Show appropriate thank you page
+    setTimeout(() => {
+        document.getElementById('loadingState').classList.remove('show');
+        showThankYouPage(leadQualification);
+    }, 2000);
+});
+
+// Determine lead qualification logic
+function determineLeadQualification(data) {
+    // Extract numeric values from NEPA and fuel
+    function getNumericValue(range) {
+        if (!range) return 0;
+        if (range.includes('Under')) return 5000;
+        if (range === 'I don\'t use generator') return 0;
+        if (range === 'Not sure') return 0;
+        
+        const match = range.match(/₦?([\d,]+)/);
+        if (match) {
+            return parseInt(match[1].replace(/,/g, ''));
+        }
+        return 0;
+    }
+    
+    const nepaAmount = getNumericValue(data.nepaBillAmount || data.nepaBill);
+    const fuelAmount = getNumericValue(data.fuelSpendAmount || data.fuelSpend);
+    
+    // NOT A LEAD conditions
+    // Only reject if BOTH NEPA AND fuel are below ₦10k
+    if (nepaAmount < 10000 && fuelAmount < 10000) {
+        return { status: 'not-lead', color: 'not-lead', reason: 'Low energy spend' };
+    }
+    
+    if (data.timeline === 'Just gathering information') {
+        return { status: 'not-lead', color: 'not-lead', reason: 'No immediate timeline' };
+    }
+    
+    if (data.openToQuotation === 'No') {
+        return { status: 'not-lead', color: 'not-lead', reason: 'Not open to quotation' };
+    }
+    
+    // YELLOW conditions (needs attention)
+    const yellowConditions = [];
+    
+    if (data.buildingAge === '10–20 years' || data.buildingAge === 'Over 20 years' || data.buildingAge === 'Not sure') {
+        yellowConditions.push('Old building');
+    }
+    
+    if (data.electricalIssues && data.electricalIssues.length > 0 && !data.electricalIssues.includes('None of the above')) {
+        yellowConditions.push('Electrical issues');
+    }
+    
+    if (data.roofCondition !== 'Solid and leak-free') {
+        yellowConditions.push('Roof condition');
+    }
+    
+    if (data.shading === 'Yes') {
+        yellowConditions.push('Shading issues');
+    }
+    
+    // If any yellow conditions exist, return YELLOW
+    if (yellowConditions.length > 0) {
+        return { 
+            status: 'qualified-lead', 
+            color: 'yellow', 
+            reason: 'Needs professional assessment',
+            issues: yellowConditions
+        };
+    }
+    
+    // Otherwise GREEN (qualified, ready to go)
+    return { 
+        status: 'qualified-lead', 
+        color: 'green', 
+        reason: 'Home appears safe for solar'
+    };
+}
+
+// Show appropriate thank you page
+function showThankYouPage(qualification) {
+    const whatsapp = document.querySelector('input[name="whatsapp"]').value;
+    const firstName = document.querySelector('input[name="firstName"]').value;
+    
+    if (qualification.color === 'green') {
+        const greenCTA = document.getElementById('greenCTA');
+        const message = `Hi! I just completed the Solar Safety Check and my home appears SAFE (GREEN) for solar. I'd like to get a FREE energy assessment to determine the right system size. My name is ${firstName}.`;
+        greenCTA.href = `https://wa.me/2348161114167?text=${encodeURIComponent(message)}`;
+        document.getElementById('thankYouGreen').classList.add('show');
+        
+    } else if (qualification.color === 'yellow') {
+        const yellowCTA = document.getElementById('yellowCTA');
+        const message = `Hi! I completed the Solar Safety Check. My home has some caution areas (YELLOW). I need a professional assessment before installing solar. My name is ${firstName}.`;
+        yellowCTA.href = `https://wa.me/2348161114167?text=${encodeURIComponent(message)}`;
+        document.getElementById('thankYouYellow').classList.add('show');
+        
+    } else {
+        document.getElementById('thankYouNotLead').classList.add('show');
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+
+</body>
+</html>
